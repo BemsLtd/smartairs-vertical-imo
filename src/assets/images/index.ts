@@ -1,0 +1,45 @@
+import heroImage from './hero-image.png'
+import bgPattern from './bg-pattern.png'
+import emawacLogo from './emawac-logo.png'
+import whyDigitalDevice from './why-digital-device.png'
+import serviceOperations from './service-operations.png'
+import audienceResidents from './audience-residents.png'
+import audienceBusinesses from './audience-businesses.png'
+import audienceGovernment from './audience-government.png'
+import audienceCollectors from './audience-collectors.png'
+import partnerImoState from './partner-imo-state.png'
+import partnerMinistry from './partner-ministry.png'
+import partner3 from './partner-3.png'
+import partner4 from './partner-4.png'
+import smartIrsLogo from './smart-irs-log.png'
+import news2 from './news-2.png'
+import news3 from './news-3.png'
+import gallery1 from './gallery-1.png'
+import gallery4 from './gallery-4.png'
+import gallery5 from './gallery-5.png'
+import posShot from './pos-shot.png'
+import ctaBannerBg from './cta-banner-bg.png'
+
+export {
+  heroImage,
+  bgPattern,
+  emawacLogo,
+  whyDigitalDevice,
+  serviceOperations,
+  audienceResidents,
+  audienceBusinesses,
+  audienceGovernment,
+  audienceCollectors,
+  partnerImoState,
+  partnerMinistry,
+  partner3,
+  partner4,
+  smartIrsLogo,
+  news2,
+  news3,
+  gallery1,
+  gallery4,
+  gallery5,
+  posShot,
+  ctaBannerBg,
+}
