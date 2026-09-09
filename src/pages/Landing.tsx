@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import {
   Check,
   ArrowRight,
@@ -13,29 +14,151 @@ import {
 } from 'lucide-react'
 
 // Assets
-import heroImg from '@/assets/images/hero-image.png'
-import bgPattern from '@/assets/images/bg-pattern.png'
-import whyDigitalDevice from '@/assets/images/why-digital-device.png'
-import serviceOperations from '@/assets/images/service-operations.png'
-import audienceResidents from '@/assets/images/audience-residents.png'
-import audienceBusinesses from '@/assets/images/audience-businesses.png'
-import audienceGovernment from '@/assets/images/audience-government.png'
-import audienceCollectors from '@/assets/images/audience-collectors.png'
-import partnerImoState from '@/assets/images/partner-imo-state.png'
-import partnerMinistry from '@/assets/images/partner-ministry.png'
-import partner3 from '@/assets/images/partner-3.png'
-import partner4 from '@/assets/images/partner-4.png'
-import smartIrsLogo from '@/assets/images/smart-irs-log.png'
-import news2 from '@/assets/images/news-2.png'
-import news3 from '@/assets/images/news-3.png'
-import gallery1 from '@/assets/images/gallery-1.png'
-import gallery4 from '@/assets/images/gallery-4.png'
-import gallery5 from '@/assets/images/gallery-5.png'
-import ctaBannerBg from '@/assets/images/cta-banner-bg.png'
+import {
+  heroImage as heroImg,
+  bgPattern,
+  whyDigitalDevice,
+  serviceOperations,
+  audienceResidents,
+  audienceBusinesses,
+  audienceGovernment,
+  audienceCollectors,
+  partnerImoState,
+  partnerMinistry,
+  partner3,
+  partner4,
+  smartIrsLogo,
+  news2,
+  news3,
+  gallery1,
+  gallery4,
+  gallery5,
+  posShot,
+  ctaBannerBg,
+} from '@/assets/images'
+
+type ServiceTabKey = 'trucks' | 'field' | 'pos'
+
+interface ServiceSlide {
+  id: string
+  title: string
+  badge: string
+  tag: string
+  image: string
+  description: string
+}
+
+const serviceTabs: Array<{ id: ServiceTabKey; label: string }> = [
+  { id: 'trucks', label: 'Trucks & Teams' },
+  { id: 'field', label: 'Field Operations' },
+  { id: 'pos', label: 'Payment Machines' },
+]
+
+const serviceTabData: Record<ServiceTabKey, { label: string; slides: ServiceSlide[] }> = {
+  trucks: {
+    label: 'Trucks & Teams',
+    slides: [
+      {
+        id: 'trucks-1',
+        title: 'Modern Waste Compactor Fleet',
+        badge: 'Fleet Tracking',
+        tag: 'Active Across 27 LGAs',
+        image: gallery5,
+        description:
+          'Dedicated compactor trucks and trained sanitation personnel operating on automated schedule routes.',
+      },
+      {
+        id: 'trucks-2',
+        title: 'Coordinated Municipal Transit',
+        badge: 'GPS Monitored',
+        tag: 'Real-Time Dispatch',
+        image:
+          'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1600&q=80',
+        description:
+          'Smart route tracking guarantees punctual household waste pick-up and monitored waste transfer stations.',
+      },
+    ],
+  },
+  field: {
+    label: 'Field Operations',
+    slides: [
+      {
+        id: 'field-1',
+        title: 'On-Site Verification & Environmental Teams',
+        badge: 'Field Operations',
+        tag: 'Verified Compliance',
+        image: serviceOperations,
+        description:
+          'Field supervisors inspect premises, verify service standards, and coordinate directly with local community leaders.',
+      },
+      {
+        id: 'field-2',
+        title: 'Community Cleanliness Enforcement',
+        badge: 'Sanitation Corps',
+        tag: 'Community Action',
+        image: gallery1,
+        description:
+          'Authorized environmental officers ensure compliant disposal and immediate clearance of illegal waste dumps.',
+      },
+    ],
+  },
+  pos: {
+    label: 'Payment Machines',
+    slides: [
+      {
+        id: 'pos-1',
+        title: 'SmartAIRS Handheld POS Verification',
+        badge: 'SmartAIRS Integrated',
+        tag: 'Instant Receipt',
+        image: posShot,
+        description:
+          'Accredited field agents equipped with smart POS terminals enable on-the-spot bill verification and secure payment.',
+      },
+      {
+        id: 'pos-2',
+        title: 'Contactless & Cashless Transactions',
+        badge: 'Secure Gateway',
+        tag: 'Tamper-Proof',
+        image:
+          'https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=1600&q=80',
+        description:
+          'Every transaction generates an official digital record, SMS confirmation, and verified print receipt for peace of mind.',
+      },
+    ],
+  },
+}
+
+const slideVariants: Variants = {
+  enter: (dir: number) => ({
+    x: dir > 0 ? 60 : -60,
+    opacity: 0,
+    scale: 0.98,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: 'easeOut',
+    },
+  },
+  exit: (dir: number) => ({
+    x: dir < 0 ? 60 : -60,
+    opacity: 0,
+    scale: 0.98,
+    transition: {
+      duration: 0.3,
+      ease: 'easeIn',
+    },
+  }),
+}
 
 export function Landing() {
   const [activeFaq, setActiveFaq] = useState<number | null>(0)
-  const [activeServiceTab, setActiveServiceTab] = useState<'trucks' | 'field' | 'pos'>('trucks')
+  const [activeServiceTab, setActiveServiceTab] = useState<ServiceTabKey>('trucks')
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [direction, setDirection] = useState(1)
 
   const faqs = [
     {
@@ -370,7 +493,7 @@ export function Landing() {
       </section>
 
       {/* 5. HOW THE SERVICE WORKS */}
-      <section className="py-20 lg:py-24 bg-bg-page">
+      <section id="service-works" className="scroll-mt-24 py-20 lg:py-24 bg-bg-page overflow-hidden">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-137.25 mx-auto mb-10 space-y-2">
             <span className="text-[14px] uppercase tracking-[0.2em] font-medium text-primary">
@@ -386,59 +509,167 @@ export function Landing() {
             </p>
           </div>
 
-          {/* Tabs */}
-          <div className="flex items-center justify-center gap-2 sm:gap-6 border-b border-border-subtle/40 max-w-175 mx-auto mb-8">
-            <button
-              onClick={() => setActiveServiceTab('trucks')}
-              className={`pb-3 px-4 text-[16px] font-semibold transition-all ${
-                activeServiceTab === 'trucks'
-                  ? 'text-gold border-b-2 border-gold'
-                  : 'text-text-muted hover:text-text-dark'
-              }`}
-            >
-              Trucks & Teams
-            </button>
-            <button
-              onClick={() => setActiveServiceTab('field')}
-              className={`pb-3 px-4 text-[16px] font-semibold transition-all ${
-                activeServiceTab === 'field'
-                  ? 'text-gold border-b-2 border-gold'
-                  : 'text-text-muted hover:text-text-dark'
-              }`}
-            >
-              Field Operations
-            </button>
-            <button
-              onClick={() => setActiveServiceTab('pos')}
-              className={`pb-3 px-4 text-[16px] font-semibold transition-all ${
-                activeServiceTab === 'pos'
-                  ? 'text-gold border-b-2 border-gold'
-                  : 'text-text-muted hover:text-text-dark'
-              }`}
-            >
-              Payment Machines
-            </button>
+          {/* Animated Tabs */}
+          <div className="relative flex items-center justify-center gap-2 sm:gap-6 border-b border-border-subtle/40 max-w-175 mx-auto mb-10">
+            {serviceTabs.map((tab) => {
+              const isActive = activeServiceTab === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    const oldIndex = serviceTabs.findIndex((t) => t.id === activeServiceTab)
+                    const newIndex = serviceTabs.findIndex((t) => t.id === tab.id)
+                    setDirection(newIndex >= oldIndex ? 1 : -1)
+                    setActiveServiceTab(tab.id)
+                    setCurrentSlideIndex(0)
+                  }}
+                  className={`relative pb-3.5 px-3 sm:px-5 text-[15px] sm:text-[16px] font-semibold transition-colors cursor-pointer ${
+                    isActive ? 'text-gold' : 'text-text-muted hover:text-text-dark'
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="serviceTabIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              )
+            })}
           </div>
 
-          {/* Slider Display */}
+          {/* Interactive Carousel Card */}
           <div className="relative max-w-227 mx-auto">
-            <div className="rounded-2xl overflow-hidden shadow-md">
-              <img
-                src={serviceOperations}
-                alt="Service Operations"
-                className="w-full h-auto max-h-110.25 object-cover"
-              />
-            </div>
+            {(() => {
+              const currentTabSlides = serviceTabData[activeServiceTab].slides
+              const currentSlide = currentTabSlides[currentSlideIndex] || currentTabSlides[0]
 
-            {/* Slider controls */}
-            <div className="flex items-center justify-between w-full absolute top-1/2 -translate-y-1/2 -left-6 -right-6 px-2 pointer-events-none">
-              <button className="w-12 h-12 rounded-full border border-primary/40 bg-white/90 text-primary flex items-center justify-center hover:bg-white transition-all shadow pointer-events-auto">
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button className="w-12 h-12 rounded-full border border-primary/40 bg-white/90 text-primary flex items-center justify-center hover:bg-white transition-all shadow pointer-events-auto">
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
+              const handlePrev = () => {
+                setDirection(-1)
+                if (currentSlideIndex > 0) {
+                  setCurrentSlideIndex((prev) => prev - 1)
+                } else {
+                  const currentTabIdx = serviceTabs.findIndex((t) => t.id === activeServiceTab)
+                  const prevTabIdx = (currentTabIdx - 1 + serviceTabs.length) % serviceTabs.length
+                  const prevTab = serviceTabs[prevTabIdx].id
+                  setActiveServiceTab(prevTab)
+                  setCurrentSlideIndex(serviceTabData[prevTab].slides.length - 1)
+                }
+              }
+
+              const handleNext = () => {
+                setDirection(1)
+                if (currentSlideIndex < currentTabSlides.length - 1) {
+                  setCurrentSlideIndex((prev) => prev + 1)
+                } else {
+                  const currentTabIdx = serviceTabs.findIndex((t) => t.id === activeServiceTab)
+                  const nextTabIdx = (currentTabIdx + 1) % serviceTabs.length
+                  const nextTab = serviceTabs[nextTabIdx].id
+                  setActiveServiceTab(nextTab)
+                  setCurrentSlideIndex(0)
+                }
+              }
+
+              return (
+                <div className="relative">
+                  <div className="rounded-2xl overflow-hidden shadow-xl border border-border-subtle/30 bg-bg-mint min-h-95 sm:min-h-110.25 relative">
+                    <AnimatePresence mode="wait" custom={direction}>
+                      <motion.div
+                        key={`${activeServiceTab}-${currentSlideIndex}`}
+                        custom={direction}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="relative w-full h-95 sm:h-110.25"
+                      >
+                        <img
+                          src={currentSlide.image}
+                          alt={currentSlide.title}
+                          className="w-full h-full object-cover"
+                        />
+
+                        {/* High-end gradient overlay for text readability */}
+                        <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-transparent pointer-events-none" />
+
+                        {/* Top-Right Floating Status Pill */}
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.15, duration: 0.3 }}
+                          className="absolute top-4 right-4 sm:top-6 sm:right-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium shadow-sm"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>{currentSlide.badge}</span>
+                        </motion.div>
+
+                        {/* Bottom Floating Info Content */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 16 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2, duration: 0.35 }}
+                          className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white space-y-2.5"
+                        >
+                          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-gold text-bg-page text-xs font-semibold tracking-wider uppercase shadow-sm">
+                            {currentSlide.tag}
+                          </div>
+                          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight drop-shadow-sm">
+                            {currentSlide.title}
+                          </h3>
+                          <p className="text-sm sm:text-base text-white/90 max-w-2xl font-medium leading-relaxed drop-shadow-sm">
+                            {currentSlide.description}
+                          </p>
+                        </motion.div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Slider controls */}
+                  <div className="flex items-center justify-between w-full absolute top-1/2 -translate-y-1/2 -left-4 -right-4 sm:-left-6 sm:-right-6 px-1 sm:px-2 pointer-events-none z-20">
+                    <motion.button
+                      whileHover={{ scale: 1.1, x: -2 }}
+                      whileTap={{ scale: 0.92 }}
+                      onClick={handlePrev}
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-primary/40 bg-white/95 text-primary flex items-center justify-center hover:bg-white hover:text-gold hover:border-gold transition-colors shadow-lg pointer-events-auto cursor-pointer"
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1, x: 2 }}
+                      whileTap={{ scale: 0.92 }}
+                      onClick={handleNext}
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-primary/40 bg-white/95 text-primary flex items-center justify-center hover:bg-white hover:text-gold hover:border-gold transition-colors shadow-lg pointer-events-auto cursor-pointer"
+                      aria-label="Next slide"
+                    >
+                      <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </motion.button>
+                  </div>
+
+                  {/* Slide dots indicator */}
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    {currentTabSlides.map((slide, idx) => {
+                      const isCurrent = idx === currentSlideIndex
+                      return (
+                        <button
+                          key={slide.id}
+                          onClick={() => {
+                            setDirection(idx > currentSlideIndex ? 1 : -1)
+                            setCurrentSlideIndex(idx)
+                          }}
+                          className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                            isCurrent ? 'w-8 bg-gold' : 'w-2 bg-border-divider hover:bg-gold/50'
+                          }`}
+                          aria-label={`Go to slide ${idx + 1}`}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
+              )
+            })()}
           </div>
         </div>
       </section>

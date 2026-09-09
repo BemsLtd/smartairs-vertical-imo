@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin } from 'lucide-react'
-import emawacLogo from '@/assets/images/emawac-logo.png'
+import { emawacLogo } from '@/assets/images'
 
 export function Footer() {
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {

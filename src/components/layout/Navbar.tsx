@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import emawacLogo from '@/assets/images/emawac-logo.png'
+import { emawacLogo } from '@/assets/images'
 
 export function Navbar() {
   const location = useLocation()
