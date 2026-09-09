@@ -71,7 +71,7 @@ export function Landing() {
   return (
     <div className="w-full">
       {/* 1. HERO SECTION */}
-      <section id="about" className="relative overflow-hidden pt-8 pb-20 lg:pt-14 lg:pb-28 bg-bg-page">
+      <section id="about" className="scroll-mt-24 relative overflow-hidden pt-8 pb-20 lg:pt-14 lg:pb-28 bg-bg-page">
         {/* Background watermark pattern */}
         <div
           className="absolute inset-0 pointer-events-none opacity-10 bg-repeat bg-center"
@@ -86,7 +86,7 @@ export function Landing() {
             {/* Left Column Content */}
             <div className="lg:col-span-6 space-y-6">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/10 text-gold text-[14px] font-medium leading-none">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-gold text-[14px] font-medium leading-none">
                 <Check className="w-4 h-4 text-gold shrink-0 stroke-[2.5]" />
                 <span>Backed by Imo State's 2025 Waste Management Law</span>
               </div>
@@ -136,7 +136,7 @@ export function Landing() {
       </section>
 
       {/* 2. FOUR SIMPLE STEPS */}
-      <section id="how-it-works" className="py-20 lg:py-24 bg-bg-page">
+      <section id="how-it-works" className="scroll-mt-24 py-20 lg:py-24 bg-bg-page">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Heading */}
           <div className="text-center max-w-126.25 mx-auto mb-16 space-y-2">
@@ -372,14 +372,14 @@ export function Landing() {
       {/* 5. HOW THE SERVICE WORKS */}
       <section className="py-20 lg:py-24 bg-bg-page">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-[549px] mx-auto mb-10 space-y-2">
+          <div className="text-center max-w-137.25 mx-auto mb-10 space-y-2">
             <span className="text-[14px] uppercase tracking-[0.2em] font-medium text-primary">
               HOW THE SERVICE WORKS
             </span>
             <h2 className="text-3xl lg:text-[32px] font-bold text-text-dark">
               Technology Meets Real-World Service
             </h2>
-            <p className="text-[16px] leading-[28px] text-text-muted font-medium">
+            <p className="text-[16px] leading-7 text-text-muted font-medium">
               A digital platform is only as good as the service behind it. EWAMAC brings technology
               together with people, trucks, field teams and collection networks working across Imo
               State.
@@ -387,7 +387,7 @@ export function Landing() {
           </div>
 
           {/* Tabs */}
-          <div className="flex items-center justify-center gap-2 sm:gap-6 border-b border-border-subtle/40 max-w-[700px] mx-auto mb-8">
+          <div className="flex items-center justify-center gap-2 sm:gap-6 border-b border-border-subtle/40 max-w-175 mx-auto mb-8">
             <button
               onClick={() => setActiveServiceTab('trucks')}
               className={`pb-3 px-4 text-[16px] font-semibold transition-all ${
@@ -421,12 +421,12 @@ export function Landing() {
           </div>
 
           {/* Slider Display */}
-          <div className="relative max-w-[908px] mx-auto">
-            <div className="rounded-[16px] overflow-hidden shadow-md">
+          <div className="relative max-w-227 mx-auto">
+            <div className="rounded-2xl overflow-hidden shadow-md">
               <img
                 src={serviceOperations}
                 alt="Service Operations"
-                className="w-full h-auto max-h-[441px] object-cover"
+                className="w-full h-auto max-h-110.25 object-cover"
               />
             </div>
 
@@ -446,14 +446,14 @@ export function Landing() {
       {/* 6. FOR WASTE COLLECTORS */}
       <section className="py-20 lg:py-24 bg-primary text-bg-page">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-[524px] mb-14 space-y-2">
+          <div className="max-w-131 mb-14 space-y-2">
             <span className="text-[14px] uppercase tracking-[0.2em] font-medium text-bg-page/90">
               FOR WASTE COLLECTORS
             </span>
             <h2 className="text-3xl lg:text-[32px] font-bold text-bg-page">
               Join the Licensed Network.
             </h2>
-            <p className="text-[16px] leading-[28px] text-bg-page/80 font-medium">
+            <p className="text-[16px] leading-7 text-bg-page/80 font-medium">
               EWAMAC provides a clear digital process for private waste collectors to apply for,
               manage and renew their operating licence.
             </p>
@@ -491,10 +491,10 @@ export function Landing() {
                   {step.num}
                 </div>
                 <div>
-                  <h4 className="text-[18px] font-bold text-bg-page leading-[24px]">
+                  <h4 className="text-[18px] font-bold text-bg-page leading-6">
                     {step.title}
                   </h4>
-                  <p className="text-[14px] leading-[24px] text-bg-page/80 font-medium mt-1">
+                  <p className="text-[14px] leading-6 text-bg-page/80 font-medium mt-1">
                     {step.desc}
                   </p>
                 </div>
@@ -507,9 +507,9 @@ export function Landing() {
       {/* 7. OUR TRUSTED PARTNERS */}
       <section className="py-16 bg-bg-page border-b border-border-subtle/30">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10">
-          <div className="max-w-[380px] space-y-2 text-center lg:text-left">
+          <div className="max-w-95 space-y-2 text-center lg:text-left">
             <h3 className="text-[20px] font-bold text-text-dark">Our Trusted Partners :</h3>
-            <p className="text-[14px] leading-[24px] text-text-muted font-medium">
+            <p className="text-[14px] leading-6 text-text-muted font-medium">
               EWAMAC is responsible for waste management across Imo State, while SmartAIRS provides
               the technology that helps bring the service into a more connected and transparent
               digital environment.
@@ -548,7 +548,7 @@ export function Landing() {
       </section>
 
       {/* 8. NEWS AND EVENTS */}
-      <section id="news" className="py-20 lg:py-24 bg-bg-card">
+      <section id="news" className="scroll-mt-24 py-20 lg:py-24 bg-bg-card">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div className="space-y-1">
@@ -591,22 +591,22 @@ export function Landing() {
             ].map((article, idx) => (
               <div
                 key={idx}
-                className="bg-bg-card rounded-[12px] border border-border-subtle/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+                className="bg-bg-card rounded-xl border border-border-subtle/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
               >
                 <div>
                   <img
                     src={article.image}
                     alt={article.title}
-                    className="w-full h-[216px] object-cover"
+                    className="w-full h-54 object-cover"
                   />
                   <div className="p-6 space-y-3">
                     <span className="text-[14px] text-text-muted font-medium">
                       {article.date}
                     </span>
-                    <h3 className="text-[18px] font-bold text-text-dark leading-[24px]">
+                    <h3 className="text-[18px] font-bold text-text-dark leading-6">
                       {article.title}
                     </h3>
-                    <p className="text-[14px] leading-[22px] text-text-muted font-medium line-clamp-4">
+                    <p className="text-[14px] leading-5.5 text-text-muted font-medium line-clamp-4">
                       {article.desc}
                     </p>
                   </div>
@@ -627,7 +627,7 @@ export function Landing() {
       </section>
 
       {/* 9. GALLERY */}
-      <section id="gallery" className="py-20 lg:py-24 bg-bg-page">
+      <section id="gallery" className="scroll-mt-24 py-20 lg:py-24 bg-bg-page">
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-10">
             <div className="space-y-1">
@@ -649,40 +649,40 @@ export function Landing() {
 
           {/* Mosaic Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-auto">
-            <div className="md:col-span-4 h-[300px] md:h-[480px]">
+            <div className="md:col-span-4 h-75 md:h-120">
               <img
                 src={gallery1}
                 alt="Community cleaning"
-                className="w-full h-full object-cover rounded-[8px]"
+                className="w-full h-full object-cover rounded-lg"
               />
             </div>
             <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="h-[230px]">
+              <div className="h-57.5">
                 <img
                   src={gallery5}
                   alt="Waste collection truck"
-                  className="w-full h-full object-cover rounded-[8px]"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="h-[230px]">
+              <div className="h-57.5">
                 <img
                   src={serviceOperations}
                   alt="Field operations"
-                  className="w-full h-full object-cover rounded-[8px]"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="h-[230px]">
+              <div className="h-57.5">
                 <img
                   src={news2}
                   alt="Resident cleanup"
-                  className="w-full h-full object-cover rounded-[8px]"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <div className="h-[230px]">
+              <div className="h-57.5">
                 <img
                   src={gallery4}
                   alt="Environmental enforcement"
-                  className="w-full h-full object-cover rounded-[8px]"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
             </div>
@@ -691,8 +691,8 @@ export function Landing() {
       </section>
 
       {/* 10. FAQS (Mint Section) */}
-      <section id="faqs" className="py-20 lg:py-24 bg-bg-mint">
-        <div className="max-w-[684px] mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="faqs" className="scroll-mt-24 py-20 lg:py-24 bg-bg-mint">
+        <div className="max-w-171 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 space-y-1.5">
             <span className="text-[14px] uppercase tracking-[0.2em] font-medium text-primary">
               FAQS
@@ -722,7 +722,7 @@ export function Landing() {
                     )}
                   </button>
                   {isOpen && (
-                    <div className="pt-3 text-[14px] leading-[24px] text-text-muted font-medium">
+                    <div className="pt-3 text-[14px] leading-6 text-text-muted font-medium">
                       {faq.a}
                     </div>
                   )}
@@ -743,14 +743,14 @@ export function Landing() {
         <div className="absolute inset-0 bg-primary-overlay" />
 
         <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-[625px] space-y-4">
+          <div className="max-w-156.25 space-y-4">
             <span className="text-[14px] uppercase tracking-[0.2em] font-medium text-bg-page/90">
               EMAWAC
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-bg-page leading-[1.2]">
               Your Waste Service Starts Here.
             </h2>
-            <p className="text-[16px] sm:text-[18px] leading-[28px] text-bg-page/90 font-medium">
+            <p className="text-[16px] sm:text-[18px] leading-7 text-bg-page/90 font-medium">
               Take the first step towards a cleaner, better organised and more accountable waste
               management system.
             </p>

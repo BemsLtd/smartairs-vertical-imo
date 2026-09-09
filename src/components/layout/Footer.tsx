@@ -2,6 +2,15 @@ import { Phone, Mail, MapPin } from 'lucide-react'
 import emawacLogo from '@/assets/images/emawac-logo.png'
 
 export function Footer() {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    const element = document.getElementById(targetId)
+    if (element) {
+      e.preventDefault()
+      element.scrollIntoView({ behavior: 'smooth' })
+      window.history.pushState(null, '', `#${targetId}`)
+    }
+  }
+
   return (
     <footer className="bg-bg-page border-t border-border-subtle/40 pt-16 pb-12 text-text-muted">
       <div className="max-w-310 mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,27 +49,47 @@ export function Footer() {
             <h4 className="text-[18px] font-bold text-text-dark">Quick Links</h4>
             <ul className="space-y-3 text-[14px]">
               <li>
-                <a href="#about" className="hover:text-primary transition-colors">
+                <a
+                  href="#about"
+                  onClick={(e) => handleScrollTo(e, 'about')}
+                  className="hover:text-primary transition-colors"
+                >
                   About EMAWAC
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="hover:text-primary transition-colors">
+                <a
+                  href="#how-it-works"
+                  onClick={(e) => handleScrollTo(e, 'how-it-works')}
+                  className="hover:text-primary transition-colors"
+                >
                   How it works
                 </a>
               </li>
               <li>
-                <a href="#register" className="hover:text-primary transition-colors">
+                <a
+                  href="#register"
+                  onClick={(e) => handleScrollTo(e, 'register')}
+                  className="hover:text-primary transition-colors"
+                >
                   Register your premises
                 </a>
               </li>
               <li>
-                <a href="#pay-bill" className="hover:text-primary transition-colors">
+                <a
+                  href="#pay-bill"
+                  onClick={(e) => handleScrollTo(e, 'pay-bill')}
+                  className="hover:text-primary transition-colors"
+                >
                   Pay a bill
                 </a>
               </li>
               <li>
-                <a href="#faqs" className="hover:text-primary transition-colors">
+                <a
+                  href="#faqs"
+                  onClick={(e) => handleScrollTo(e, 'faqs')}
+                  className="hover:text-primary transition-colors"
+                >
                   FAQs
                 </a>
               </li>
