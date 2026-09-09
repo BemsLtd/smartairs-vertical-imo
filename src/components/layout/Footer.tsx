@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { emawacLogo } from '@/assets/images'
 
@@ -59,12 +60,28 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#how-it-works"
+                  href="/#how-it-works"
                   onClick={(e) => handleScrollTo(e, 'how-it-works')}
                   className="hover:text-primary transition-colors"
                 >
                   How it works
                 </a>
+              </li>
+              <li>
+                <Link
+                  to="/gallery"
+                  className="hover:text-primary transition-colors"
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/news"
+                  className="hover:text-primary transition-colors"
+                >
+                  News & Events
+                </Link>
               </li>
               <li>
                 <a
@@ -165,7 +182,7 @@ export function Footer() {
 
         {/* Bottom copyright line */}
         <div className="border-t border-border-divider/50 pt-8 text-center text-[14px] text-text-muted">
-          <p>© 2026 Eastern Waste Management Corporation (EWAMAC). All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Eastern Waste Management Corporation (EWAMAC). All Rights Reserved.</p>
         </div>
       </div>
     </footer>

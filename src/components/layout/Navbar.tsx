@@ -1,8 +1,9 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { emawacLogo } from '@/assets/images'
 
 export function Navbar() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     if (location.pathname === '/' || location.pathname === '') {
@@ -12,6 +13,9 @@ export function Navbar() {
         element.scrollIntoView({ behavior: 'smooth' })
         window.history.pushState(null, '', `#${targetId}`)
       }
+    } else {
+      e.preventDefault()
+      navigate(`/#${targetId}`)
     }
   }
 
@@ -29,39 +33,45 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links matching Figma */}
-          <nav className="hidden lg:flex items-center gap-6 text-[15px] font-medium text-primary">
+          <nav className="hidden lg:flex items-center gap-6 text-[15px] font-medium">
             <a
-              href="#about"
+              href="/#about"
               onClick={(e) => handleNavClick(e, 'about')}
-              className="hover:opacity-80 transition-opacity"
+              className="text-primary hover:opacity-80 transition-opacity py-1"
             >
               About EMAWAC
             </a>
             <a
-              href="#how-it-works"
+              href="/#how-it-works"
               onClick={(e) => handleNavClick(e, 'how-it-works')}
-              className="hover:opacity-80 transition-opacity"
+              className="text-primary hover:opacity-80 transition-opacity py-1"
             >
               How it works
             </a>
-            <a
-              href="#gallery"
-              onClick={(e) => handleNavClick(e, 'gallery')}
-              className="hover:opacity-80 transition-opacity"
+            <Link
+              to="/gallery"
+              className={`transition-all py-1 ${
+                location.pathname === '/gallery'
+                  ? 'text-gold border-b-2 border-gold font-semibold'
+                  : 'text-primary hover:opacity-80'
+              }`}
             >
               Gallery
-            </a>
-            <a
-              href="#news"
-              onClick={(e) => handleNavClick(e, 'news')}
-              className="hover:opacity-80 transition-opacity"
+            </Link>
+            <Link
+              to="/news"
+              className={`transition-all py-1 ${
+                location.pathname.startsWith('/news')
+                  ? 'text-gold border-b-2 border-gold font-semibold'
+                  : 'text-primary hover:opacity-80'
+              }`}
             >
               News & Events
-            </a>
+            </Link>
             <a
-              href="#self-service"
+              href="/#self-service"
               onClick={(e) => handleNavClick(e, 'self-service')}
-              className="hover:opacity-80 transition-opacity"
+              className="text-primary hover:opacity-80 transition-opacity py-1"
             >
               Self-service
             </a>

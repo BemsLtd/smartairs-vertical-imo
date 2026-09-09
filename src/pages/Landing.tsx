@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import {
   Check,
@@ -790,13 +791,13 @@ export function Landing() {
                 News and Events
               </h2>
             </div>
-            <a
-              href="#more-updates"
+            <Link
+              to="/news"
               className="inline-flex items-center gap-2 text-gold font-medium text-[16px] hover:underline"
             >
               <span>See more updates</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -843,13 +844,13 @@ export function Landing() {
                   </div>
                 </div>
                 <div className="p-6 pt-0">
-                  <a
-                    href="#read-more"
+                  <Link
+                    to="/news"
                     className="inline-flex items-center gap-1.5 text-[15px] font-semibold text-gold hover:underline"
                   >
                     <span>Read more</span>
                     <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
