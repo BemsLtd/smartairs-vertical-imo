@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { emawacLogo } from '@/assets/images'
 
@@ -59,12 +60,20 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#how-it-works"
+                  href="/#how-it-works"
                   onClick={(e) => handleScrollTo(e, 'how-it-works')}
                   className="hover:text-primary transition-colors"
                 >
                   How it works
                 </a>
+              </li>
+              <li>
+                <Link
+                  to="/gallery"
+                  className="hover:text-primary transition-colors"
+                >
+                  Gallery
+                </Link>
               </li>
               <li>
                 <a

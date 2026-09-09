@@ -19,6 +19,13 @@ import gallery4 from './gallery-4.png'
 import gallery5 from './gallery-5.png'
 import posShot from './pos-shot.png'
 import ctaBannerBg from './cta-banner-bg.png'
+import galleryMosaicBg from './gallery-mosaic-bg.png'
+import galleryPage1 from './gallery-page-1.png'
+import galleryPage2 from './gallery-page-2.png'
+import galleryPage3 from './gallery-page-3.png'
+import galleryPage4 from './gallery-page-4.png'
+import galleryPage5 from './gallery-page-5.png'
+import galleryPage6 from './gallery-page-6.png'
 
 export {
   heroImage,
@@ -42,4 +49,11 @@ export {
   gallery5,
   posShot,
   ctaBannerBg,
+  galleryMosaicBg,
+  galleryPage1,
+  galleryPage2,
+  galleryPage3,
+  galleryPage4,
+  galleryPage5,
+  galleryPage6,
 }
