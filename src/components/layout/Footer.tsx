@@ -182,7 +182,7 @@ export function Footer() {
 
         {/* Bottom copyright line */}
         <div className="border-t border-border-divider/50 pt-8 text-center text-[14px] text-text-muted">
-          <p>© 2026 Eastern Waste Management Corporation (EWAMAC). All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Eastern Waste Management Corporation (EWAMAC). All Rights Reserved.</p>
         </div>
       </div>
     </footer>
