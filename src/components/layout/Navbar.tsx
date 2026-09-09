@@ -58,13 +58,16 @@ export function Navbar() {
             >
               Gallery
             </Link>
-            <a
-              href="/#news"
-              onClick={(e) => handleNavClick(e, 'news')}
-              className="text-primary hover:opacity-80 transition-opacity py-1"
+            <Link
+              to="/news"
+              className={`transition-all py-1 ${
+                location.pathname.startsWith('/news')
+                  ? 'text-gold border-b-2 border-gold font-semibold'
+                  : 'text-primary hover:opacity-80'
+              }`}
             >
               News & Events
-            </a>
+            </Link>
             <a
               href="/#self-service"
               onClick={(e) => handleNavClick(e, 'self-service')}

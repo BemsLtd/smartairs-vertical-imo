@@ -76,6 +76,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link
+                  to="/news"
+                  className="hover:text-primary transition-colors"
+                >
+                  News & Events
+                </Link>
+              </li>
+              <li>
                 <a
                   href="#register"
                   onClick={(e) => handleScrollTo(e, 'register')}

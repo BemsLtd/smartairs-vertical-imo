@@ -26,6 +26,7 @@ import galleryPage3 from './gallery-page-3.png'
 import galleryPage4 from './gallery-page-4.png'
 import galleryPage5 from './gallery-page-5.png'
 import galleryPage6 from './gallery-page-6.png'
+import newsArticle6 from './news-article-6.png'
 
 export {
   heroImage,
@@ -56,4 +57,5 @@ export {
   galleryPage4,
   galleryPage5,
   galleryPage6,
+  newsArticle6,
 }
